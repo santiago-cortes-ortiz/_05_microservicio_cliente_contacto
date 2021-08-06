@@ -11,6 +11,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 public class PersonaController {
@@ -28,5 +29,12 @@ public class PersonaController {
         restTemplate.postForLocation(url+"/contactos",persona);
         Persona[] personas = restTemplate.getForObject(url+"/contactos",Persona[].class);
         return Arrays.asList(personas);
+    }
+    @GetMapping(value="/personas/{edad1}/{edad2}", produces=MediaType.APPLICATION_JSON_VALUE)
+    public List<Persona> buscarEdades(@PathVariable("edad1") int edad1, @PathVariable("edad2") int edad2){
+        Persona[] personas=restTemplate.getForObject(url+"/contactos", Persona[].class);
+        return Arrays.stream(personas)
+                .filter(p->p.getEdad()>=edad1&&p.getEdad()<=edad2)
+                .collect(Collectors.toList());
     }
 }
