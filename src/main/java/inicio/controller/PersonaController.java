@@ -27,6 +27,6 @@ public class PersonaController {
         Persona persona = new Persona(nombre,email,edad);
         restTemplate.postForLocation(url+"/contactos",persona);
         Persona[] personas = restTemplate.getForObject(url+"/contactos",Persona[].class);
-        return Arrays.asList(persona);
+        return Arrays.asList(personas);
     }
 }
