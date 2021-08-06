@@ -23,7 +23,7 @@ public class PersonaController {
     @Autowired
     RestTemplate restTemplate;
 
-    String url = "http://localhost:8080";
+    String url = "http://servicio-contactos";
 
     @GetMapping(value = "/personas/{nombre}/{email}/{edad}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Persona>> altaPersona(@PathVariable("nombre") String nombre,

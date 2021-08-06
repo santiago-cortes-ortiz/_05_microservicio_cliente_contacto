@@ -2,6 +2,7 @@ package inicio;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.client.support.BasicAuthenticationInterceptor;
 import org.springframework.web.client.RestTemplate;
@@ -14,6 +15,7 @@ public class Application {
     }
 
     @Bean
+    @LoadBalanced
     public RestTemplate template(){
         BasicAuthenticationInterceptor interceptor;
         interceptor = new BasicAuthenticationInterceptor("admin","admin");
